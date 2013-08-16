@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recuariments</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="navbar">
+	  <div class="navbar-inner">
+	    <a class="brand" href="#">Recuariments</a>
+	    <ul class="nav">
+	      <li class="<%= is_active?("projects") %>"><a href="#">Home</a></li>
+	      <li><a href="#">Link</a></li>
+	      <li><a href="#">Link</a></li>
+	    </ul>
+	  </div>
+	</div>
+	<div class="container">
+		<%= notice_message %>
+		<%= yield %>
+	</div>
+
+</body>
+</html>

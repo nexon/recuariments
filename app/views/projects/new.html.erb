@@ -1,0 +1,4 @@
+<%= simple_form_for @project, html:{class:"form-horizontal"} do |f| %>
+	<%= render "form", f:f %>
+	<%= f.button :submit, "Create Project", class:"btn btn-primary" %>
+<% end %>

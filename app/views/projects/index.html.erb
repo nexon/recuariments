@@ -1,0 +1,35 @@
+<div class="row">
+	<% if @projects.empty? %>
+		<p class="text-center">
+			You don't have any project yet. <%= link_to "Create one", new_project_path %>
+		</p>
+	<% else %>
+	<div class="page-header">
+	  <h1>Project List <small><%= link_to "New Project", new_project_path %></small></h1>
+	</div>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>
+					Project Name
+				</th>
+				<th>
+					Options
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @projects.each do |p| %>
+				<tr>
+					<td>
+						<%= link_to p.title, project_path(p) %>
+					</td>
+					<td>
+						<%= link_to "Edit", edit_project_path(p) %> | <%= link_to "Delete", project_path(p), method: :delete, data: {confirm: "Are you sure?"} %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% end %>
+</div>

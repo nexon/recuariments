@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="page-header">
+		<h3>Project</h3>
+	</div>
+	<%= f.input :title, as: :string %>
+</div>
+<div class="row">
+	<div class="page-header">
+		<h3>Requirement Attributes for Project</h3>
+	</div>
+	<%= f.simple_fields_for :fields, html:{class:"form-vertical"} do |field| %>
+		<%= render "field_fields", f:field %>
+	<% end %>
+	<%= link_to_add_fields "Add Field", f, :fields %>
+</div>

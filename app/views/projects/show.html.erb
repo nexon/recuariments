@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="page-header">
+		<h1><%= @project.title %></h1>
+	</div>
+</div>
+<div class="row">
+	<div class="page-header">
+		<h3>Requirement List <small><%= link_to "New Requirement", new_project_requirement_path(@project) %></small></h3>
+	</div>
+	<% if @requirement.empty? %>
+		<p class="text-center">
+			You don't have any requirement yet. <%= link_to "Create one", new_project_requirement_path(@project) %>
+		</p>
+	<% else %>
+	<% end %>
+</div>
+<div class="row">
+	<div clas="page-header">
+		<h3>Requirement Attributes List <small><%= link_to "New Requirement Attribute", new_project_path %></small></h3>
+	</div>
+	<% if @requirement_attributes.empty? %>
+		<p class="text-center">
+			You don't have any requirement attribute yet. <%= link_to "Create one", new_project_path %>
+		</p>
+	<% else %>
+	<% end %>
+</div>

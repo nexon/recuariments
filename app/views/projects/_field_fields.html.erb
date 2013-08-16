@@ -1,0 +1,7 @@
+<fieldset>
+	<%= f.input :field_type, as: :select, collection: %w[text_field check_box] %>
+	<%= f.input :name %>
+	<%= f.input :required %> Required
+	<%= f.input :_destroy, as: :hidden %>
+	<%= link_to "Remove", '#', input_html:{class: "remove_fields"} %>
+</fieldset>
