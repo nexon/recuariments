@@ -11,4 +11,11 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "btn add_fields", data:{id: id, fields: fields.gsub("\n", "")})
   end
+  
+  def convert_type(type)
+    case type
+    when "text_field" then :string
+    when "check_box" then :boolean
+    end
+  end
 end
