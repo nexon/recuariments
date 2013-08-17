@@ -40,7 +40,6 @@ class RequirementsController < ApplicationController
     output = RequirementReport.new.to_pdf
     send_data output, :filename => "hello.pdf", 
                       :type => "application/pdf"
-    end
   end
   
   private
