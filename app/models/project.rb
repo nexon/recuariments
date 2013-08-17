@@ -5,12 +5,6 @@ class Project < ActiveRecord::Base
   validates_associated :fields
   
   accepts_nested_attributes_for :fields, allow_destroy: true
-  # after_validation  :normalize_fields
-  # 
-  # 
-  # private
-  # 
-  # def normalize_fields
-  #   self.fields.select {|f| }
-  # end
+  
+  validates_uniqueness_of :title, scope:[:user_id]
 end
