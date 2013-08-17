@@ -6,14 +6,14 @@ class RequirementField < ActiveRecord::Base
   before_save :parameterize_name
   
   #validates  :field_name, uniqueness: {conditions: -> { where("fields.field_name != ?", self.field_name) }} scope: :project#conditions:  #scope: [:project_id]
-  validates_with UniquenessFieldName
+  # validates_with UniquenessFieldName
     
-  # validates_each :field_name do |record, attr, value|
-  #   logger.debug record.project.fields.find_by_field_name(record.field_name).inspect
-  #   unless record.project.fields.find_by_field_name(value).blank?
-  #     record.errors.add(value, "cannot be repeated.")
-  #   end
-  # end
+  validates_each :field_name do |record, attr, value|
+    logger.debug record.project.fields.find_by_field_name(record.name.parameterize.gsub("-","_")).inspect
+    unless record.project.fields.find_by_field_name(value).blank?
+      record.errors.add(value, "cannot be repeated.")
+    end
+  end
   
   # def uniqueness_field_name
   #   errors.add(:base, "cannot be repeated.") unless self.project.fields.find_by_field_name(self.field_name).blank?
