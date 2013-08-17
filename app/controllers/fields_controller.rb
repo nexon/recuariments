@@ -12,7 +12,7 @@ class FieldsController < ApplicationController
     if @field.valid? && @field.save
       redirect_to project_path(@project), notice: "Successfully added new field."
     else
-      redirect_to new_project_requirement_field_path(@project), alert: "Something went wrong."
+      redirect_to new_project_requirement_field_path(@project), alert: "Something went wrong. #{@field.errors}"
     end
   end
   
