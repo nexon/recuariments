@@ -3,21 +3,21 @@ class RequirementField < ActiveRecord::Base
   
   SUPPORTED_FIELD_TYPE = {"text_field" => "string", "check_box" => "boolean"}
   
-  before_save :parameterize_name
+  before_validation :parameterize_name
+  
   
   #validates  :field_name, uniqueness: {conditions: -> { where("fields.field_name != ?", self.field_name) }} scope: :project#conditions:  #scope: [:project_id]
   # validates_with UniquenessFieldName
     
-  validates_each :field_name do |record, attr, value|
-    logger.debug record.project.fields.find_by_field_name(record.name.parameterize.gsub("-","_")).inspect
-    unless record.project.fields.find_by_field_name(value).blank?
-      record.errors.add(value, "cannot be repeated.")
-    end
-  end
-  
-  # def uniqueness_field_name
-  #   errors.add(:base, "cannot be repeated.") unless self.project.fields.find_by_field_name(self.field_name).blank?
+  # validates_each :field_name do |record, attr, value|
+  #   if not record.new_record?
+  #     unless record.project.fields.find_by_field_name(record.name.parameterize.gsub("-","_")).blank?
+  #       record.errors.add(value, "cannot be repeated.")
+  #     end
+  #   end
   # end
+  validates_uniqueness_of :field_name, scope: [:project_id]
+
   def parameterize_name
     self.field_name = self.name.parameterize.gsub("-","_")
   end
