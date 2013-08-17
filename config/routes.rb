@@ -3,7 +3,7 @@ Recuariments::Application.routes.draw do
   
   resources :projects do
     resources :requirements
-    resources :requirement_attributes
+    resources :fields, as: "requirement_fields"
   end
   
   root 'projects#index'

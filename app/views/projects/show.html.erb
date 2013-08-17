@@ -17,11 +17,11 @@
 </div>
 <div class="row">
 	<div clas="page-header">
-		<h3>Requirement Attributes List <small><%= link_to "New Requirement Attribute", new_project_path %></small></h3>
+		<h3>Requirement Attributes List <small><%= link_to "New Requirement Attribute", new_project_requirement_field_path(@project) %></small></h3>
 	</div>
 	<% if @fields.empty? %>
 		<p class="text-center">
-			You don't have any requirement attribute yet. <%= link_to "Create one", new_project_path %>
+			You don't have any requirement attribute yet. <%= link_to "Create one", new_project_requirement_field_path(@project) %>
 		</p>
 	<% else %>
 		<%= render "requirement_fields_list", fields: @fields %>

@@ -1,0 +1,5 @@
+<%= f.label "Type" %>
+<%= f.input_field :field_type, as: :select, collection: %w[text_field check_box] %>
+<%= f.label "Name"%>
+<%= f.input_field :name %>
+<%= f.input_field :required, label: false %> Required

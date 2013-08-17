@@ -21,7 +21,7 @@
 				<td><%= field.name %></td>
 				<td><%= field.field_type %></td>
 				<td><%= field.required ? "YES" : "NO" %></td>
-				<td><%= link_to "Edit", root_path %> | <%= link_to "Delete", project_requirement_attribute_path(@project,field),  method: :delete,data: {confirm: "Are you sure?"} %></td>
+				<td><%= link_to "Edit", edit_project_requirement_field_path(@project, field) %> | <%= link_to "Delete", project_requirement_field_path(@project,field),  method: :delete,data: {confirm: "Are you sure?"} %></td>
 			</tr>
 		<% end %>
 	</tbody>
