@@ -36,6 +36,13 @@ class RequirementsController < ApplicationController
     end
   end
   
+  def export_pdf
+    output = RequirementReport.new.to_pdf
+    send_data output, :filename => "hello.pdf", 
+                      :type => "application/pdf"
+    end
+  end
+  
   private
   
   def requirement_params

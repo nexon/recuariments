@@ -2,7 +2,11 @@ Recuariments::Application.routes.draw do
   devise_for :users
   
   resources :projects do
-    resources :requirements
+    resources :requirements do
+      collection do
+        get :export_pdf
+      end
+    end
     resources :fields, as: "requirement_fields"
   end
   
