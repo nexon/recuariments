@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816182326) do
+ActiveRecord::Schema.define(version: 20130816224119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20130816182326) do
     t.datetime "updated_at"
   end
 
+  create_table "requirement_field_values", force: true do |t|
+    t.string   "value"
+    t.integer  "requirement_id"
+    t.integer  "requirement_field_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "requirement_field_values", ["requirement_field_id"], name: "index_requirement_field_values_on_requirement_field_id", using: :btree
+  add_index "requirement_field_values", ["requirement_id"], name: "index_requirement_field_values_on_requirement_id", using: :btree
+
   create_table "requirement_fields", force: true do |t|
     t.string   "name"
     t.string   "field_type"
@@ -30,6 +41,7 @@ ActiveRecord::Schema.define(version: 20130816182326) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "field_name"
   end
 
   add_index "requirement_fields", ["project_id"], name: "index_requirement_fields_on_project_id", using: :btree

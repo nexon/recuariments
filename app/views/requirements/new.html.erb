@@ -1,4 +1,9 @@
-<%= simple_form_for [@project,@requirement] do |f| %>
-	<%= render "form", f:f %>
-	<%= f.button :submit, "Create requirement", class:"btn btn-primary" %>
-<% end %>
+<div class="row">
+	<div class="page-header">
+		<h2>New Requirement <small>for <%= @project.title %></small></h2>
+	</div>
+	<%= simple_form_for [@project,@requirement] do |f| %>
+		<%= render "form", f:f %>
+		<%= f.button :submit, "Create requirement", class:"btn btn-primary" %>
+	<% end %>
+</div>

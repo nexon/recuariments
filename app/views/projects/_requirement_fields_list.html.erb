@@ -1,0 +1,28 @@
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>
+				Field Name
+			</th>
+			<th>
+				Field Type
+			</th>
+			<th>
+				is Requiered?
+			</th>
+			<th>
+				Options
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% fields.each do |field| %>
+			<tr>
+				<td><%= field.name %></td>
+				<td><%= field.field_type %></td>
+				<td><%= field.required ? "YES" : "NO" %></td>
+				<td><%= link_to "Edit", root_path %> | <%= link_to "Delete", project_requirement_attribute_path(@project,field),  method: :delete,data: {confirm: "Are you sure?"} %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

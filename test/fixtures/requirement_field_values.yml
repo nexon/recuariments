@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  value: MyString
+  requirement_id: 
+  requirement_field_id: 
+
+two:
+  value: MyString
+  requirement_id: 
+  requirement_field_id: 
