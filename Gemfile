@@ -19,6 +19,7 @@ gem 'simple_form', git: "https://github.com/plataformatec/simple_form"
 gem 'anjlab-bootstrap-rails', '>= 2.3', :require => 'bootstrap-rails'
 gem "font-awesome-rails"
 gem 'bootstrap_helper'
+gem 'prawn'
 # gem 'twitter-bootstrap-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
