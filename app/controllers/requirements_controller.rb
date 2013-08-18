@@ -10,14 +10,13 @@ class RequirementsController < ApplicationController
     @project  = current_user.projects.find(params[:project_id])
     @requirement = @project.requirements.build
 
-    @requirement.build_attributes_with_values(requirement_params[:requirement_attributes])
+    @requirement.build_attributes_with_values(requirement_params)
     
     if @requirement.valid? && @requirement.save
       redirect_to project_path(@project), notice: "Requirement Successfully added to the project."
     else
-      @fields = @project.fields
+      @fields = @project.fields      
       render :new
-      #redirect_to new_project_requirement_path(@project), alert: "Something went wrong."
     end
   end
   
@@ -31,10 +30,11 @@ class RequirementsController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @requirement = @project.requirements.find(params[:id])
     
-    if @requirement.update_requirement_attributes(requirement_params[:requirement_attributes])
+    if @requirement.update_requirement_attributes(requirement_params)
       redirect_to project_path(@project), notice: "Requirement Successfully updated."
     else
-      redirect_to edit_project_requirement(@project,@requirement), alert: "Something went wrong."
+      @fields      = @project.fields
+      render :edit
     end
   end
   
