@@ -39,8 +39,9 @@ class RequirementsController < ApplicationController
   end
   
   def export_pdf
-    output = RequirementReport.new.to_pdf
-    send_data output, :filename => "hello.pdf", 
+    project = current_user.projects.find(params[:project_id])
+    output = RequirementReport.new.to_pdf(project.requirements)
+    send_data output, :filename => "#{project.title.parameterize.gsub('-','_')}_requirements_#{Time.now.to_i}", 
                       :type => "application/pdf"
   end
   
