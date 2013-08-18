@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="page-header">
-		<h1><%= @project.title %></h1>
+		<h1><%= @project.title %></h1><small><%= link_to "Export all requirements to PDF", export_pdf_project_requirements_path(@project) %></small>
 	</div>
 </div>
 <div class="row">
