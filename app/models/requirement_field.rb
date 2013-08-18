@@ -1,7 +1,7 @@
 class RequirementField < ActiveRecord::Base
   belongs_to :project
   
-  SUPPORTED_FIELD_TYPE = %w(text_field check_box textarea)
+  SUPPORTED_FIELD_TYPE = %w(text_field check_box textarea date)
   
   before_validation :parameterize_name
   validates :field_type, :name, presence: true
