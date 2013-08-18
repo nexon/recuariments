@@ -1,18 +1,28 @@
-<% requirements.each do |requirement|%>
-	<div class="hero-unit">
-		<% requirement.requirement_attributes.reverse.each do |requirement_attribute| %>
-			<div class="row-fluid">
-				<div class="span4">
-					<strong><%= requirement_attribute.requirement_field.name %>:</strong>
-				</div>
-				<div class="span8">
-					<%= requirement_attribute.value %>
-				</div>
-			</div>
-		<% end %>
+<table class="table table-bordered" id="table-requirements-<%= @project.id %>">
+	<thead>
+		<tr>
+			<% fields = project.fields.limit(3).map {|f| f.field_name }%>
+			<% fields.each do |field| %>
+				<th><%= field.humanize %></th>
+			<% end %>
+			<th>
+				Options
+			</th>
+		</tr>
+	</thead>
+	<tbody>
 		
-	</div>
-	<div class="row-fluid">
-		<small class="pull-right"><%= link_to "Edit", edit_project_requirement_path(@project,requirement) %> | Delete</small>
-	</div>
-<% end %>
+		<% requirements.each do |requirement|%>
+			<tr>
+				<% fields.each do |field| %>
+					<td><%= requirement.send(field)  %></td>
+				<% end %>
+				<td>
+					<%= link_to "Show", project_requirement_path(project,requirement)  %> |
+					<%= link_to "Edit", edit_project_requirement_path(project, requirement) %> | 
+					<%= link_to "Remove", project_requirement_path(project, requirement), method: :delete, data: {confirm: "Are you sure?"} %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

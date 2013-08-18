@@ -38,6 +38,11 @@ class RequirementsController < ApplicationController
     end
   end
   
+  def show
+    @project = current_user.projects.find(params[:project_id])
+    @requirement = @project.requirements.find(params[:id])
+  end
+  
   def export_pdf
     project = current_user.projects.find(params[:project_id])
     output = RequirementReport.new.to_pdf(project.requirements)

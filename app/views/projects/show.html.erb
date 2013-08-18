@@ -12,7 +12,7 @@
 			You don't have any requirement yet. <%= link_to "Create one", new_project_requirement_path(@project) %>
 		</p>
 	<% else %>
-		<%= render "requirement_list", requirements:@requirements %>
+		<%= render "requirement_list", requirements:@requirements, project: @project %>
 	<% end %>
 </div>
 <div class="row">

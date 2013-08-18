@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="page-header">
+		<h1>Requirement Detail <small> for <%= @project.title %></small></h1>
+	</div>
+	<div class="hero-unit">
+		<% @requirement.requirement_attributes.reverse.each do |requirement_attribute| %>
+			<div class="row-fluid">
+				<div class="span4">
+					<strong><%= requirement_attribute.requirement_field.name %>:</strong>
+				</div>
+				<div class="span8">
+					<%= requirement_attribute.value %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+</div>
+<div class="row">
+	<div class="span12">
+		<%= link_to "Go Back", project_path(@project), class: "btn btn-primary pull-right" %>
+	</div>
+</div>
