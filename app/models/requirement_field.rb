@@ -9,6 +9,10 @@ class RequirementField < ActiveRecord::Base
   validates :field_type, inclusion: { in:SUPPORTED_FIELD_TYPE}
   
   after_validation :copy_attribute_error
+  before_save      :ordering_record
+  
+  default_scope { order(order: :asc) }
+  
   
   private
   
@@ -28,4 +32,11 @@ class RequirementField < ActiveRecord::Base
   def parameterize_name
     self.field_name = self.name.parameterize.gsub("-","_")
   end
+  
+  def ordering_record
+    # We obtain the last record order and  +1
+    lastest_new_record = self.class.order("created_at").last
+    self.order  =  lastest_new_record.blank? ? 1 : lastest_new_record.order + 1
+  end
+  
 end

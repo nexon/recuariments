@@ -1,6 +1,6 @@
 <% requirements.each do |requirement|%>
 	<div class="hero-unit">
-		<% requirement.requirement_attributes.each do |requirement_attribute| %>
+		<% requirement.requirement_attributes.reverse.each do |requirement_attribute| %>
 			<div class="row-fluid">
 				<div class="span4">
 					<strong><%= requirement_attribute.requirement_field.name %>:</strong>

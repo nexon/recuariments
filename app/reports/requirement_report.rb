@@ -7,7 +7,7 @@ class RequirementReport < Prawn::Document
     
     records.each do |requirement|
       rows = []
-      requirement.requirement_attributes.each do |attribute|
+      requirement.requirement_attributes.reverse.each do |attribute|
         rows << [Prawn::Table::Cell::Text.new(self, [0,0], content: attribute.requirement_field.name,
                                               inline_format:  true,background_color:  'E8E8D0', font: "Helvetica", font_style: :bold), attribute.value]
       end

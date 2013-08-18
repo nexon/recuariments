@@ -1,6 +1,9 @@
-<table class="table table-bordered">
+<table class="table table-bordered" id="table-requirements-fields-<%= @project.id %>">
 	<thead>
 		<tr>
+			<th>
+				Order
+			</th>
 			<th>
 				Field Name
 			</th>
@@ -20,7 +23,10 @@
 	</thead>
 	<tbody>
 		<% fields.each do |field| %>
-			<tr>
+			<tr id="<%= field.field_name %>">
+				<td id="order">
+					<%= field.order  %>
+				</td>
 				<td><%= field.name %></td>
 				<td><%= field.field_type %></td>
 				<td><%= field.required ? "YES" : "NO" %></td>

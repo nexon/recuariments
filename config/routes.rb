@@ -7,6 +7,10 @@ Recuariments::Application.routes.draw do
         get :export_pdf
       end
     end
+    
+    member do
+      post :update_order
+    end
     resources :fields, as: "requirement_fields"
   end
   

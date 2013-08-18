@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130817160103) do
+ActiveRecord::Schema.define(version: 20130818201252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20130817160103) do
     t.datetime "updated_at"
     t.string   "field_name"
     t.boolean  "unique"
+    t.integer  "order",      default: 99999
   end
 
   add_index "requirement_fields", ["project_id"], name: "index_requirement_fields_on_project_id", using: :btree

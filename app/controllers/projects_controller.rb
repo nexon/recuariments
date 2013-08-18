@@ -50,6 +50,26 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def update_order
+    project = current_user.projects.find(params[:id])
+    old_position   = project.fields.find_by_field_name(params[:field])
+    
+    old_position.update(order: params[:order])
+    
+    result = {}
+    
+    if old_position.save
+      result[:success] = true
+      result[:message] = "Order updated!."
+    else
+      result[:success] = false
+      result[:message] = "Order updated failed!."
+    end
+    respond_to do |format|
+      format.json { render json: result}
+    end
+  end
+  
   private
   
   def project_params
