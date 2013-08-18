@@ -3,6 +3,8 @@ class Requirement < ActiveRecord::Base
   
   has_many   :requirement_attributes, class_name:"RequirementFieldValues", dependent: :destroy
   
+  validates_associated :requirement_attributes
+  validates_presence_of :requirement_attributes
   
   
   def build_attributes_with_values(attr)

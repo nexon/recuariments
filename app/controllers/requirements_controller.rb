@@ -9,13 +9,15 @@ class RequirementsController < ApplicationController
   def create
     @project  = current_user.projects.find(params[:project_id])
     @requirement = @project.requirements.build
-    
+
     @requirement.build_attributes_with_values(requirement_params[:requirement_attributes])
     
     if @requirement.valid? && @requirement.save
       redirect_to project_path(@project), notice: "Requirement Successfully added to the project."
     else
-      redirect_to new_project_requirement_path(@project), alert: "Something went wrong."
+      @fields = @project.fields
+      render :new
+      #redirect_to new_project_requirement_path(@project), alert: "Something went wrong."
     end
   end
   

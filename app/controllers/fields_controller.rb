@@ -2,17 +2,27 @@ class FieldsController < ApplicationController
   
   def new
     @project = current_user.projects.find(params[:project_id])
-    @field = @project.fields.build
+    @requirement_attribute = @project.fields.build
   end
   
   def create
     @project = current_user.projects.find(params[:project_id])
-    @field   = @project.fields.build(fields_params)
+    @requirement_attribute   = @project.fields.build(fields_params)
     
-    if @field.valid? && @field.save
+    if @requirement_attribute.valid? && @requirement_attribute.save
       redirect_to project_path(@project), notice: "Successfully added new field."
     else
-      redirect_to new_project_requirement_field_path(@project), alert: "Something went wrong. #{@field.errors}"
+      # Since we don't have any field in the form that shows the field_name property
+      # (because this property or attribute is calculated or generated before save the record)
+      # the error don't will appear. So instead we ask if 
+      # exist an error for field_name, and if exist, simple we add a new error for 
+      # 'name' attribute with the value of the error 'field_name'. This approach will show 
+      # the error in the form.
+      
+      if @requirement_attribute.errors.has_key?(:field_name)
+        @requirement_attribute.errors.add(:name, @requirement_attribute.errors.full_messages_for(:field_name).join(","))
+      end
+      render :new
     end
   end
   

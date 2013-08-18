@@ -2,7 +2,7 @@
 	<div class="page-header">
 		<h2>New Field <small>for <%= @project.title %></small></h2>
 	</div>
-	<%= simple_form_for [@project,@field], html:{class:"form-inlinex"} do |f| %>
+	<%= simple_form_for [@project,@requirement_attribute], html:{class:"form-inline"} do |f| %>
 		<%= render "form", f:f %>
 		<div class="form-actions">
 			<%= f.button :submit, "Create Field", class:"btn btn-primary" %>
