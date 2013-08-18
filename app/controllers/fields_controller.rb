@@ -17,10 +17,21 @@ class FieldsController < ApplicationController
   end
   
   def edit
-    
+    @project = current_user.projects.find(params[:project_id])
+    @requirement_attribute   = @project.fields.find(params[:id])
   end
   
   def update
+    @project = current_user.projects.find(params[:project_id])
+    @requirement_attribute   = @project.fields.find(params[:id])
+    
+    @requirement_attribute.update(fields_params)
+    
+    if @requirement_attribute.valid? && @requirement_attribute.save
+      redirect_to project_path(@project), notice: "Successfully edited!."
+    else
+      render :edit
+    end
     
   end
   
