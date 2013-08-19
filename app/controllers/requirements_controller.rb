@@ -43,6 +43,17 @@ class RequirementsController < ApplicationController
     @requirement = @project.requirements.find(params[:id])
   end
   
+  def destroy
+    @project = current_user.projects.find(params[:project_id])
+    @requirement = @project.requirements.find(params[:id])
+    
+    if @requirement.destroy
+      redirect_to project_path(@project), notice: "Requirement Successfully removed."
+    else
+      redirect_to project_path(@project), alert: "Something went wrong."
+    end
+  end
+  
   def export_pdf
     project = current_user.projects.find(params[:project_id])
     output = RequirementReport.new.to_pdf(project.requirements)
