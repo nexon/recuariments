@@ -10,8 +10,7 @@ class ProjectsController < ApplicationController
   
   def create
     @project = current_user.projects.build(project_params)
-    
-    if @project.valid? && @project.save
+    if @project.valid? && @project.save 
       redirect_to projects_path, notice: "Project Created successfully."
     else
       render :new
