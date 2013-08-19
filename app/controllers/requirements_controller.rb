@@ -56,9 +56,14 @@ class RequirementsController < ApplicationController
   
   def export_pdf
     project = current_user.projects.find(params[:project_id])
-    output = RequirementReport.new.to_pdf(project.requirements)
-    send_data output, :filename => "#{project.title.parameterize.gsub('-','_')}_requirements_#{Time.now.to_i}", 
-                      :type => "application/pdf"
+    requirements = project.requirements
+    if(requirements.empty?)
+      redirect_to project_path(project), alert: "You don't have any requirement to export."
+    else
+      output = RequirementReport.new.to_pdf(requirements)
+      send_data output, :filename => "#{project.title.parameterize.gsub('-','_')}_requirements_#{Time.now.to_i}", 
+                        :type => "application/pdf"
+    end
   end
   
   private
