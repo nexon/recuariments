@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
     if @project.valid? && @project.save
       redirect_to projects_path, notice: "Project Created successfully."
     else
-      render :new#, alert: "Something went wrong."
+      render :new
     end
   end
   
@@ -41,7 +41,6 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(project_params)
       redirect_to projects_path, notice: "Project was successfully updated."
     else
-      #redirect_to edit_project_path(@project), alert: "Something went wrong."
       render :edit
     end
   end
