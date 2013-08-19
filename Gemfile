@@ -21,6 +21,8 @@ gem "font-awesome-rails"
 gem 'bootstrap_helper'
 gem 'prawn'
 gem 'bootstrap-datepicker-rails'
+gem 'newrelic_rpm'
+
 # gem 'twitter-bootstrap-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
