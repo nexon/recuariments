@@ -1,4 +1,7 @@
 class RequirementField < ActiveRecord::Base
+  extend FriendlyId
+  
+  friendly_id  :field_name, use: :finders
   belongs_to :project
   
   SUPPORTED_FIELD_TYPE = %w(text_field check_box textarea date)
