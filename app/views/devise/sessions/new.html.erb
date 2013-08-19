@@ -10,9 +10,11 @@
 			 <span class="add-on"><i class="icon-key"></i></span>
 	    <%= f.input_field :password, :required => false , label: false%>
 		</div>
-	    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-	  
-		<%= f.button :submit, "Sign in", class:"btn btn-primary" %>
+		<%#= f.input_field :remember_me, label: false, :as => :boolean if devise_mapping.rememberable? %>
+		<div class="row-fluid">
+			<%= f.button :submit, "Sign in", class:"btn btn-primary" %>
+		</div>
+		
 		<% end %>
 </div>
 
