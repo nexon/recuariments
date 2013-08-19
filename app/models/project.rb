@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   friendly_id :title, use: [:slugged, :finders]
   
   has_many :memberships
-  has_many :members, class_name: "User", through: :membership
+  has_many :members, class_name: "User", through: :memberships
 
   # belongs_to :owner, class_name: "User"
 
