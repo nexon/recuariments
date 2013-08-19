@@ -6,4 +6,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :fields, allow_destroy: true
   validates_uniqueness_of :title, scope:[:user_id]
   validates_presence_of   :title
+  
+  include FriendlyId
+  friendly_id :title, :use => [:slugged, :finders]
 end
