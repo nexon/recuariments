@@ -39,22 +39,30 @@ class ProjectsController < ApplicationController
   
   
   def update
-    @project = current_user.projects.find(params[:id])
-    
-    if @project.update_attributes(project_params)
-      redirect_to projects_path, notice: "Project was successfully updated."
+    begin
+      @project = current_user.projects.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, aler: "Project not found."
     else
-      render :edit
+      if @project.update_attributes(project_params)
+       redirect_to projects_path, notice: "Project was successfully updated."
+      else
+        render :edit
+      end
     end
   end
   
   def destroy
-    @project = current_user.projects.find(params[:id])
-    
-    if @project.destroy
-      redirect_to projects_path, notice: "Project #{@project.title} was successfully removed."
+    begin
+      @project = current_user.projects.find(params[:id])      
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, aler: "Project not found."
     else
-      redirect_to projects_path, alert: "Something went wrong."
+      if @project.destroy
+        redirect_to projects_path, notice: "Project #{@project.title} was successfully removed."
+      else
+        redirect_to projects_path, alert: "Something went wrong."
+      end
     end
   end
   
