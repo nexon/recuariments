@@ -2,11 +2,15 @@
 	<div class="page-header">
 		<h2>New Requirement <small>for <%= @project.title %></small></h2>
 	</div>
-	<%= simple_form_for [@project,@requirement] do |f| %>
-		<%= render "form", f:f %>
-			<div class="form-actions">
-				<%= f.button :submit, "Create Requirement", class:"btn btn-primary" %>
-				<%= link_to "Cancel", :back, class:"btn" %>
-			</div>
+	<% unless @project.fields.blank? %>
+		<%= simple_form_for [@project,@requirement] do |f| %>
+			<%= render "form", f:f %>
+				<div class="form-actions">
+					<%= f.button :submit, "Create Requirement", class:"btn btn-primary" %>
+					<%= link_to "Cancel", :back, class:"btn" %>
+				</div>
+		<% end %>
+	<% else %>
+	Create a field for a requirement first!. <%= link_to "Create one", new_project_requirement_field_path(@project) %>
 	<% end %>
 </div>

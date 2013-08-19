@@ -13,7 +13,7 @@ class RequirementField < ActiveRecord::Base
   
   default_scope { order(order: :asc) }
   
-  
+  after_destroy :ensure_remove_association
   private
   
   def copy_attribute_error
@@ -37,6 +37,12 @@ class RequirementField < ActiveRecord::Base
     # We obtain the last record order and  +1
     lastest_new_record = self.class.order("created_at").last
     self.order  =  lastest_new_record.blank? ? 1 : lastest_new_record.order + 1
+  end
+  
+  def ensure_remove_association
+    if self.project.fields.blank?
+      self.project.requirements.destroy_all
+    end 
   end
   
 end
