@@ -2,7 +2,11 @@ class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
   
-  belongs_to :user
+  has_many :memberships
+  has_many :members, class_name: "User", through: :membership
+
+  # belongs_to :owner, class_name: "User"
+
   has_many   :requirements, dependent: :destroy
   has_many   :fields, class_name: "RequirementField", dependent: :destroy
     
