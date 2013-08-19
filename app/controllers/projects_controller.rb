@@ -19,9 +19,15 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    @project     = current_user.projects.find(params[:id])
-    @requirements = @project.requirements
-    @fields       = @project.fields
+    begin
+      @project     = current_user.projects.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, alert: "Project not found."
+    else
+      @requirements = @project.requirements
+      @fields       = @project.fields      
+    end
+
   end
   
   def edit
