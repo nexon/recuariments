@@ -1,5 +1,5 @@
-<%= f.input :field_type, as: :select, collection: RequirementField::SUPPORTED_FIELD_TYPE %>
-<%= f.input :name, as: :string %>
-<%= f.input :required, label: false %> Required
-<%= f.input :unique, label: false %> Unique
+Field Type <%= f.input_field :field_type, as: :select, collection: RequirementField::SUPPORTED_FIELD_TYPE %>
+Name <%= f.input_field :name, as: :string %>
+<%= f.input_field :required %> Required
+<%= f.input_field :unique, label: false %> Unique
 <%# f.input :_destroy, as: :hidden %>
