@@ -31,7 +31,11 @@ class ProjectsController < ApplicationController
   end
   
   def edit
-    @project = current_user.projects.find(params[:id])
+    begin
+      @project = current_user.projects.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, aler: "Project not found."
+    end
   end
   
   
