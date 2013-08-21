@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-        has_many :memberships, inverse_of: :user
+        has_many :memberships
         has_many :projects, through: :memberships
          
          # has_many :projects, dependent: :destroy

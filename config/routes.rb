@@ -1,6 +1,7 @@
 Recuariments::Application.routes.draw do
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
   resources :projects do
+    resources :collaborators
     resources :requirements do
       collection do
         get :export_pdf

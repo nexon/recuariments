@@ -27,3 +27,14 @@
 		<%= render "requirement_fields_list", fields: @fields %>
 	<% end %>
 </div>
+
+<div class="row">
+	<div class="page-header">
+		<h3>Collaborators <small><%= link_to "Add a Collaborator", new_project_collaborator_path(@project) %></small></h3>
+	</div>
+	<% if @collaborators.empty? %>
+		You don't have any collaborator in your project. <%= link_to "Add One", new_project_collaborator_path(@project) %>
+	<% else %>
+		<%= render "collaborator_list", collaborators: @colaborators %>
+	<% end %>
+</div>

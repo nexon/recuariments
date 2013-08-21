@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Email</th>
+			<th>Options</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @collaborators.each do |member| %>
+		  <tr>
+		  	<td><%= member.user.email %> <%= raw('<span class="label label-success">Owner</span>') if member.owner %> </td>
+		  	<td>REMOVE</td>
+		  </tr>
+		<% end %>
+	</tbody>
+</table>

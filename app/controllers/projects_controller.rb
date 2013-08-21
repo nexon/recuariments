@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
     else
       @requirements = @project.requirements
       @fields       = @project.fields      
+      @collaborators = @project.memberships
     end
 
   end
