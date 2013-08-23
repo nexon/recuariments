@@ -25,8 +25,10 @@ class Requirement < ActiveRecord::Base
   
   def update_requirement_attributes(attr)
     attr.each do |key,value|
+      logger.debug("#{key} = #{value}")
       self.send("#{key}=", value)
     end
+    logger.debug("inspect object: #{self.inspect}")
     (self.errors.empty?) ? true : false
   end
   
@@ -41,7 +43,7 @@ class Requirement < ActiveRecord::Base
         define_method "#{method_name.field_name}=" do |arg|
           record =self.requirement_attributes.find_by(requirement_field_id: method_name.id)
           if record.blank?
-            self.requirement_attributes.build(requirement_field: method_name, value: arg)
+            self.requirement_attributes.build(requirement_field: method_name, value: arg).save
           else
             # how i do to this don't trigget save (?)
             unless record.update(value: arg)
