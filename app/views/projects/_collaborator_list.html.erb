@@ -2,14 +2,14 @@
 	<thead>
 		<tr>
 			<th>Email</th>
-			<th>Options</th>
+			<th>Options</th> 
 		</tr>
 	</thead>
 	<tbody>
 		<% @collaborators.each do |member| %>
 		  <tr>
 		  	<td><%= member.user.email %> <%= raw('<span class="label label-success">Owner</span>') if member.owner %> </td>
-		  	<td>REMOVE</td>
+		  	<td><%= "options" if member.owner %></td>
 		  </tr>
 		<% end %>
 	</tbody>

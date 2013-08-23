@@ -3,38 +3,52 @@
 		<h1><%= @project.title %></h1><small><%= link_to "Export all requirements to PDF", export_pdf_project_requirements_path(@project) %></small>
 	</div>
 </div>
-<div class="row">
-	<div class="page-header">
-		<h3>Requirement List <small><%= link_to "New Requirement", new_project_requirement_path(@project) %></small></h3>
-	</div>
-	<% if @requirements.empty? %>
-		<p class="text-center">
-			You don't have any requirement yet. <%= link_to "Create one", new_project_requirement_path(@project) %>
-		</p>
-	<% else %>
-		<%= render "requirement_list", requirements:@requirements, project: @project %>
-	<% end %>
-</div>
-<div class="row">
-	<div clas="page-header">
-		<h3>Requirement Attributes List <small><%= link_to "New Requirement Attribute", new_project_requirement_field_path(@project) %></small></h3>
-	</div>
-	<% if @fields.empty? %>
-		<p class="text-center">
-			You don't have any requirement attribute yet. <%= link_to "Create one", new_project_requirement_field_path(@project) %>
-		</p>
-	<% else %>
-		<%= render "requirement_fields_list", fields: @fields %>
-	<% end %>
-</div>
-
-<div class="row">
-	<div class="page-header">
-		<h3>Collaborators <small><%= link_to "Add a Collaborator", new_project_collaborator_path(@project) %></small></h3>
-	</div>
-	<% if @collaborators.empty? %>
-		You don't have any collaborator in your project. <%= link_to "Add One", new_project_collaborator_path(@project) %>
-	<% else %>
-		<%= render "collaborator_list", collaborators: @colaborators %>
-	<% end %>
+<div class="widget">
+    <ul id="myTab" class="nav nav-tabs three-tabs fancy">
+      <li class="active"><a href="#requirement" data-toggle="tab">Requirement List</a></li>
+      <li><a href="#requirement_fields" data-toggle="tab">Requirement Fields</a></li>
+      <li><a href="#collaborators" data-toggle="tab">Collaborators</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="requirement">
+				<div class="row-fluid">
+					<% if @requirements.empty? %>
+						<p class="text-center">
+							You don't have any requirement yet. <%= link_to "Create one", new_project_requirement_path(@project) %>
+						</p>
+					<% else %>
+						<p><%= render "requirement_list", requirements:@requirements, project: @project %></p>
+					<% end %>
+				</div>
+				<div class="row-fluid">
+					<p class="pull-right"><%= link_to "New Requirement", new_project_requirement_path(@project), class:"btn btn-primary" %></p>
+				</div>
+      </div>
+      <div class="tab-pane fade" id="requirement_fields">
+				<div class="row-fluid">
+					<% if @fields.empty? %>
+							<p class="text-center">
+								You don't have any requirement attribute yet. <%= link_to "Create one", new_project_requirement_field_path(@project) %>
+							</p>
+					<% else %>
+						<p><%= render "requirement_fields_list", fields: @fields %></p>
+					<% end %>
+				</div>
+				<div class="row-fluid">
+					<p class="pull-right"><%= link_to "New Requirement Attribute", new_project_requirement_field_path(@project), class:"btn btn-primary" %></p>
+				</div>
+      </div>
+      <div class="tab-pane fade" id="collaborators">
+				<div class="row-fluid">
+					<% if @collaborators.empty? %>
+						You don't have any collaborator in your project. <%= link_to "Add One", new_project_collaborator_path(@project) %>
+					<% else %>
+						<p><%= render "collaborator_list", collaborators: @colaborators %></p>
+					<% end %>
+				</div>
+				<div class="row-fluid">
+					<p class="pull-right"><%= link_to "Add a Collaborator", new_project_collaborator_path(@project), class:"btn btn-primary" %></p>
+				</div>
+      </div>
+    </div>
 </div>

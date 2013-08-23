@@ -3,17 +3,38 @@ class CollaboratorsController < ApplicationController
     begin
       @project = current_user.projects.find(params[:project_id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to project_path(@project), alert: "Project not found."
+      redirect_to projects_path, alert: "Project not found."
     else
       @collaborator = @project.users.build
     end
   end
   
   def create
-    if false
-      "OLI"
+    begin
+      @project = current_user.projects.find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, alert: "Project not found."
     else
-      render :new
+      begin
+        @user         = User.find_by_email(params[:collaborator][:email])
+      rescue ActiveRecord::RecordNotFound
+        render :new
+      else
+        begin
+          @collaborator = @project.users << @user
+        rescue ActiveRecord::RecordInvalid
+          render :new
+        else  
+          redirect_to project_path(@project), notice: "Collaborator Successfully added to project!."
+        end
+      end
     end
+  end
+  
+  
+  private
+  
+  def collaborator_params
+    params.require(:collaborator).permit(:email)
   end
 end
