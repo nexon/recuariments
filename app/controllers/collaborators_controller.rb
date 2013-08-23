@@ -1,4 +1,9 @@
 class CollaboratorsController < ApplicationController
+  def index
+    
+  end
+  
+  
   def new
     begin
       @project = current_user.projects.find(params[:project_id])

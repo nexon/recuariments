@@ -1,5 +1,7 @@
 class FieldsController < ApplicationController
-  
+  def index
+    
+  end
   def new
     @project = current_user.projects.find(params[:project_id])
     @requirement_attribute = @project.fields.build
