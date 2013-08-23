@@ -1,1 +1,10 @@
-hola
+<div class="row">
+	<div class="page-header">
+		<h2>Collaborators <small><%= link_to "New Collaborator", new_project_collaborator_path(@project) %></small></h2>
+	</div>
+	<% if @collaborators.empty? %>
+		<p class="text-centered">You don't have any collaborator in your project. <%= link_to "Add One", new_project_collaborator_path(@project) %></p>
+	<% else %>
+		<p><%= render "collaborator_list", collaborators: @colaborators %></p>
+	<% end %>
+</div>

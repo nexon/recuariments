@@ -6,7 +6,7 @@ class CollaboratorsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to projects_path, alert: "Project not found."
     else
-      @collaborators = @project.users
+      @collaborators = @project.memberships
     end 
   end
   

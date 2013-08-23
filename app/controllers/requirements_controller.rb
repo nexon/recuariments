@@ -1,5 +1,13 @@
 class RequirementsController < ApplicationController
-  
+  def index
+    begin
+      @project = current_user.projects.find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, alert: "Project not found."
+    else
+      @requirements = @project.requirements
+    end
+  end
   def new 
     @project = current_user.projects.find(params[:project_id])
     @requirement = @project.requirements.build
