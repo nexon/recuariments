@@ -49,6 +49,6 @@ class FieldsController < ApplicationController
   private
   
   def fields_params
-    params.require(:requirement_field).permit(:field_type, :name, :required)
+    params.require(:requirement_field).permit(:field_type, :name, :required, :unique)
   end
 end
