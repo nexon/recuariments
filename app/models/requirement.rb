@@ -45,14 +45,8 @@ class Requirement < ActiveRecord::Base
           if record.blank?
             self.requirement_attributes.build(requirement_field: method_name, value: arg).save
           else
-            # how i do to this don't trigget save (?)
             unless record.update(value: arg)
-              logger.debug "DENTRO DEL UPDATE ATTRIBUTE!"
-              logger.debug record.errors.inspect
-              logger.debug self.errors.inspect
               self.errors.add(method_name.field_name, record.errors.full_messages_for(:value).join(","))
-              logger.debug record.errors.inspect
-              logger.debug self.errors.inspect
             end
           end
         end

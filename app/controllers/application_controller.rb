@@ -4,15 +4,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   
-  layout :layout_resource
+  layout :layout_selector
   
   private
   
-  def layout_resource
+  def layout_selector
     if devise_controller?
-      "layout"
+      "default_layout"
     else
-      "application"
+      if controller_name == "projects"
+        "project_layout"
+      else
+        "application_layout"
+      end
     end
   end
 end
