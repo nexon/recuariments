@@ -1,7 +1,14 @@
 class FieldsController < ApplicationController
   def index
-    
+    begin
+      @project = current_user.projects.find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, alert: "Project not found."
+    else
+      @fields = @project.fields
+    end   
   end
+  
   def new
     @project = current_user.projects.find(params[:project_id])
     @requirement_attribute = @project.fields.build

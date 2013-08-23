@@ -1,8 +1,14 @@
 class CollaboratorsController < ApplicationController
-  def index
-    
-  end
   
+  def index
+    begin
+      @project = current_user.projects.find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, alert: "Project not found."
+    else
+      @collaborators = @project.users
+    end 
+  end
   
   def new
     begin

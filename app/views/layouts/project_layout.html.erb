@@ -76,6 +76,11 @@
 									<i class="icon-home"></i> <span>Dashboard</span>
 								<% end %>
 							</li>
+							<li class="<%= is_active?("requirements")%>">
+								<%= link_to project_requirements_path(@project) do %>
+									<i class="icon-file"></i><span>Requirements</span>
+								<% end %>
+							</li>
 							<li class="<%= is_active?("fields") %>">
 								<%= link_to project_requirement_fields_path(@project) do %>
 									<i class="icon-tasks"></i> <span>Attributes</span>
