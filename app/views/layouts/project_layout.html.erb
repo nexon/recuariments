@@ -71,8 +71,22 @@
 		    <div class="span2">
 					<div id="sidebar-nav">
 						<ul id="dashboard-menu" class="nav nav-list">
-							<li class="active "><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a></li>
-							<li class=" "><a href="reports.html"><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
+							<li class="<%= is_active?("projects") %>">
+								<%= link_to project_path(@project) do %>
+									<i class="icon-home"></i> <span>Dashboard</span>
+								<% end %>
+							</li>
+							<li class="<%= is_active?("fields") %>">
+								<%= link_to project_requirement_fields_path(@project) do %>
+									<i class="icon-tasks"></i> <span>Attributes</span>
+								<% end %>
+							</li>
+							<li class="<%= is_active?("collaborators") %>">
+								<%= link_to project_collaborators_path(@project) do %>
+									<i class="icon-user"></i> <span>Collaborators</span>
+								<% end %>
+							</li>
+							<!-- <li class=" "><a href="reports.html"><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
 							<li class=" "><a href="components.html"><i class="icon-briefcase"></i> <span>UI Features</span></a></li>
 							<li class=" "><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
 							<li class=" "><a href="media.html"><i class="icon-film"></i> <span>Media</span></a></li>
@@ -80,10 +94,9 @@
 							<li class=" "><a href="help.html"><i class="icon-question-sign"></i> <span>Help</span></a></li>
 							<li class=" "><a href="faq.html"><i class="icon-book"></i> <span>Faq</span></a></li>
 							<li class=" "><a href="calendar.html"><i class="icon-calendar"></i> <span>Calendar</span></a></li>
-							<li class=" "><a href="forms.html"><i class="icon-tasks"></i> <span>Forms</span></a></li>
 							<li class=" "><a href="tables.html"><i class="icon-table"></i> <span>Tables</span></a></li>
 							<li class=" theme-mobile-hack"><a href="mobile.html"><i class="icon-comment-alt"></i> <span>Mobile</span></a></li>
-							<li class=" "><a href="icons.html"><i class="icon-heart"></i> <span>Font Awesome</span></a></li>
+							<li class=" "><a href="icons.html"><i class="icon-heart"></i> <span>Font Awesome</span></a></li> -->
 						</ul>
     </div>
 		      
