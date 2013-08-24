@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/airblade/paper_trail
+  revision: b4e53f861a58ef46c698c42f0ec044535b100c3b
+  specs:
+    paper_trail (3.0.0.beta)
+      activerecord (>= 3.0, < 5.0)
+
+GIT
   remote: https://github.com/plataformatec/simple_form
   revision: 359606f222fa0972a4a14ec70140ac00f7c80839
   specs:
@@ -88,9 +95,6 @@ GEM
     multi_json (1.7.9)
     newrelic_rpm (3.6.6.147)
     orm_adapter (0.4.0)
-    paper_trail (1.6.4)
-      actionpack (>= 2.3)
-      activerecord (>= 2.3)
     pdf-reader (1.3.3)
       Ascii85 (~> 1.0.0)
       afm (~> 0.2.0)
@@ -176,7 +180,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   newrelic_rpm
-  paper_trail
+  paper_trail!
   pg
   prawn
   rails (= 4.0.0)

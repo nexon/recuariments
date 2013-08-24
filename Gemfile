@@ -23,7 +23,7 @@ gem 'prawn'
 gem 'bootstrap-datepicker-rails'
 gem 'newrelic_rpm'
 gem 'friendly_id', '5.0.0.beta2'
-gem 'paper_trail'#, '~> 3.0'
+gem "paper_trail", git: "https://github.com/airblade/paper_trail"
 
 # gem 'twitter-bootstrap-rails'
 
