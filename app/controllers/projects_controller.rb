@@ -59,10 +59,20 @@ class ProjectsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to projects_path, aler: "Project not found."
     else
-      if @project.destroy
-        redirect_to projects_path, notice: "Project #{@project.title} was successfully removed."
-      else
+      begin
+        current_user_is_owner = current_user.memberships.find_by_project_id(@project)
+      rescue ActiveRecord::RecordNotFound
         redirect_to projects_path, alert: "Something went wrong."
+      else
+        if current_user_is_owner.owner
+          if @project.destroy
+            redirect_to projects_path, notice: "Project #{@project.title} was successfully removed."
+          else
+            redirect_to projects_path, alert: "Something went wrong."
+          end
+        else
+          redirect_to projects_path, alert: "You can't do that!."
+        end
       end
     end
   end
