@@ -10,21 +10,32 @@
 		<p class="lead">Here you can post important messages about the project!.</p>
 	</div>
 	<div class="row">
-		<div class="jumbotron">
-			<div class="container">
+		<% if @messages.empty? %>
+			No messages.
+		<% else %>
+			<% @messages.each do |m| %>
 				<div class="row">
 					<div class="col-md-4">
-						<span class="label label-default">User</span>
-						<span class="label label-info">22/08/2013</span>
+						<span class="label label-default"><%= m.post_by %></span>
+						<span class="label label-info"><%= m.created_at %></span>
 					</div>
 					<div class="col-md-8">
-						lkajdlkasjdlksajdlkasjdlksjadlkjasdlkjsalkd
+						<%= m.body %>
 					</div>
 				</div>
-				<div class="row">
-					FORMULARIO!
+			<% end %>
+		<% end %>
+		</div>
+		<div class="row">
+			<div class="jumbotron">
+				<div class="container">
+					<%= simple_form_for [@project,@message] do |f| %>
+						<%= render "messages/form", f:f %>
+						<%= f.button :submit, "Send Message", class:"btn btn-default" %>
+					<% end %>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>

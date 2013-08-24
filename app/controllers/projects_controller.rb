@@ -26,6 +26,8 @@ class ProjectsController < ApplicationController
       @requirements = @project.requirements
       @fields       = @project.fields      
       @collaborators = @project.memberships
+      @message      = @project.messages.build
+      @messages     = @project.messages
     end
 
   end
