@@ -50,13 +50,18 @@ class CollaboratorsController < ApplicationController
     else
       begin
         @user = @project.memberships.find_by_user_id(params[:id])
+        current_user_is_owner = current_user.memberships.find_by_project_id(@project)
       rescue ActiveRecord::RecordNotFound 
         redirect_to projects_path, alert: "Something went wrong."
       else
-        if @user.destroy
-          redirect_to project_collaborators_path(@project), notice: "Collaborator was successfully removed."
+        if current_user_is_owner.owner
+          if @user.destroy
+            redirect_to project_collaborators_path(@project), notice: "Collaborator was successfully removed."
+          else
+            render :index
+          end
         else
-          render :index
+          redirect_to project_collaborators_path(@project), alert: "You can't do that!."
         end
       end
       
