@@ -25,17 +25,15 @@
 				</div>
 			<% end %>
 		<% end %>
-		</div>
-		<div class="row">
-			<div class="jumbotron">
-				<div class="container">
-					<%= simple_form_for [@project,@message] do |f| %>
-						<%= render "messages/form", f:f %>
-						<%= f.button :submit, "Send Message", class:"btn btn-default" %>
-					<% end %>
-				</div>
+	</div>
+	<div class="row">
+		<div class="jumbotron">
+			<div class="container">
+				<%= simple_form_for [@project,@message] do |f| %>
+					<%= render "messages/form", f:f %>
+					<%= f.button :submit, "Send Message", class:"btn btn-default" %>
+				<% end %>
 			</div>
-		</div>
 		</div>
 	</div>
 </div>
