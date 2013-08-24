@@ -24,10 +24,17 @@
 				<h5><%= attribute.name %></h5>
 				<% attribute.versions.each do |version|  %>
 					<% unless version.changeset.empty? %>
-					<div class="col-md-12">
-						<span class="label label-info">
-							<%= version.changeset[:updated_at].last %>
-						</span> - <%= raw Diff.diff(version.changeset[:value].first, version.changeset[:value].last) %>
+					<div class="row">
+						<div class="col-md-12">
+							<span class="label label-info">
+								<%= version.changeset[:updated_at].last %>
+							</span><span class="label label-default">USERNAME</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<%= raw Diff.diff(version.changeset[:value].first, version.changeset[:value].last) %>
+						</div>
 					</div>
 					<% end %>
 				<% end %>
