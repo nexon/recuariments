@@ -1,16 +1,12 @@
-<div class="row">
-	<h2>New Field <small>for <%= @project.title %></small></h2>
-</div>
-<div class="row">
-	<%= simple_form_for [@project,@requirement_attribute], html:{class:"form-inline"} do |f| %>
-		<%= render "form", f:f %>
-		<div class="row col-md-12">
-			<div class="col-md-6">
-				<%= f.button :submit, "Create Field", class:"btn btn-primary col-md-12" %>
-			</div>
-			<div class="col-md-6">
-				<%= link_to "Cancel", :back, class:"btn btn-default col-md-12" %>
-			</div>
+<h2>New Field <small>for <%= @project.title %></small></h2>
+<%= simple_form_for [@project,@requirement_attribute], html:{class:"form-inline"} do |f| %>
+	<%= render "form", f:f %>
+	<div class="row col-md-12">
+		<div class="col-md-6">
+			<%= f.button :submit, "Create Field", class:"btn btn-primary col-md-12" %>
 		</div>
-	<% end %>
-</div>
+		<div class="col-md-6">
+			<%= link_to "Cancel", :back, class:"btn btn-default col-md-12" %>
+		</div>
+	</div>
+<% end %>
