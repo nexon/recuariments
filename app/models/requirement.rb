@@ -1,5 +1,4 @@
 class Requirement < ActiveRecord::Base
-  has_paper_trail
   belongs_to :project
   
   has_many   :requirement_attributes, class_name:"RequirementFieldValues", dependent: :destroy
@@ -9,6 +8,7 @@ class Requirement < ActiveRecord::Base
   
   after_initialize :custom_getters_and_setters
   after_validation :append_nested_errors
+  has_paper_trail
   
   def build_attributes_with_values(attr)
     attr.each do |key, value|
@@ -22,6 +22,10 @@ class Requirement < ActiveRecord::Base
       hash[r.field_name] = r.value
     end#.map {|a| a.serializable_hash}
     hash
+  end
+  
+  def associated_versions
+    self.requirement_attributes.map {|a| a.versions }
   end
   
   def update_requirement_attributes(attr)

@@ -1,5 +1,4 @@
 class RequirementField < ActiveRecord::Base
-  has_paper_trail
   extend FriendlyId
   
   friendly_id  :field_name, use: :finders
@@ -18,6 +17,8 @@ class RequirementField < ActiveRecord::Base
   default_scope { order(order: :asc) }
   
   after_destroy :ensure_remove_association
+  has_paper_trail
+  
   private
   
   def copy_attribute_error

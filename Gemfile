@@ -24,7 +24,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'newrelic_rpm'
 gem 'friendly_id', '5.0.0.beta2'
 gem "paper_trail", git: "https://github.com/airblade/paper_trail"
-
+gem "htmldiff"
 # gem 'twitter-bootstrap-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

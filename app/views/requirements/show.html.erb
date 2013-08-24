@@ -1,22 +1,44 @@
-<div class="row">
-	<div class="page-header">
-		<h1>Requirement Detail <small> for <%= @project.title %></small></h1>
-	</div>
+<div class="col-md-12">
+	<h2>Requirement Detail <small> for <%= @project.title %></small></h2>
 	<% @requirement.requirement_attributes.each do |requirement_attribute| %>
 		<div class="row">
-			<div class="row-fluid">
-				<div class="span4">
+			<div class="row">
+				<div class="col-md-4">
 					<strong><%= requirement_attribute.requirement_field.name %>:</strong>
 				</div>
-				<div class="span8">
+				<div class="col-md-8">
 					<%= requirement_attribute.value %>
 				</div>
 			</div>
 		</div>
 	<% end %>
+	<div class="row">
+		<h2>Changes</h2>
+		<% if @requirement.versions.empty? && @requirement.associated_versions.empty? %>
+			<p class="text-centered">No changes in this requirement yet.</p>
+		<% else %>
+		<ul class="list-group">
+			
+			<% @requirement.requirement_attributes.each do |attribute| %>
+			<li class="list-group-item">
+				<h5><%= attribute.name %></h5>
+				<% attribute.versions.each do |version|  %>
+					<% unless version.changeset.empty? %>
+					<div class="col-md-12">
+						<span class="label label-info">
+							<%= version.changeset[:updated_at].last %>
+						</span> - <%= raw Diff.diff(version.changeset[:value].first, version.changeset[:value].last) %>
+					</div>
+					<% end %>
+				<% end %>
+				</li>
+			<% end %>
+			</ul>
+		<% end %>
+	</div>
 </div>
 <div class="row">
-	<div class="span12">
+	<div class="col-md-12">
 		<%= link_to "Go Back", project_path(@project), class: "btn btn-primary pull-right" %>
 	</div>
 </div>

@@ -1,5 +1,4 @@
 class Project < ActiveRecord::Base
-  has_paper_trail
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
   
@@ -13,7 +12,8 @@ class Project < ActiveRecord::Base
     
   #accepts_nested_attributes_for :fields, allow_destroy: true
   validates_presence_of   :title
-
+  has_paper_trail
+  
   after_create :make_owner
 
   def make_owner
