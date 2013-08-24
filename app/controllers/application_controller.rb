@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   
   layout :layout_selector
+
+    
+  def user_for_paper_trail
+      user_signed_in? ? current_user.email : 'Public user'  # or whatever
+  end
   
   private
   
