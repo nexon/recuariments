@@ -15,7 +15,7 @@
 		<% requirements.each do |requirement|%>
 			<tr>
 				<% fields.each do |field| %>
-					<td><%= requirement.send(field)  %></td>
+					<td><%= requirement.send(field).blank? ? "" : requirement.send(field).truncate(50)  %></td>
 				<% end %>
 				<td>
 					<%= link_to "Show", project_requirement_path(project,requirement)  %> |

@@ -7,4 +7,5 @@
 	<% else %>
 		<p><%= render "requirement_list", requirements:@requirements, project: @project %></p>
 	<% end %>
+	<%= link_to "Export all requirements to PDF", export_pdf_project_requirements_path(@project) %>
 </div>
