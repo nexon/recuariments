@@ -1,5 +1,19 @@
-Field Type <%= f.input_field :field_type, as: :select, collection: RequirementField::SUPPORTED_FIELD_TYPE %>
-Name <%= f.input_field :name, as: :string %>
-<%= f.input_field :required %> Required
-<%= f.input_field :unique, label: false %> Unique
+<div class="form-group">
+	<%= f.label "Field Type" %>
+	<div class="form-group">
+		<%= f.input_field :field_type, as: :select, collection: RequirementField::SUPPORTED_FIELD_TYPE, class:"col-md-12" %>
+	</div>
+</div>
+<div class="form-group">
+	<%= f.label "Name" %>
+	<div class="form-group">
+		<%= f.input_field :name, as: :string, class:"col-md-12" %>
+	</div>
+</div>
+<div class="checkbox">
+	<%= f.input_field :required, label: false%> Required
+</div>
+<div class="checkbox">
+	<%= f.input_field :unique, label: false %> Unique
+</div>
 <%# f.input :_destroy, as: :hidden %>

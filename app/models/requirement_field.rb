@@ -1,4 +1,5 @@
 class RequirementField < ActiveRecord::Base
+  has_paper_trail
   extend FriendlyId
   
   friendly_id  :field_name, use: :finders

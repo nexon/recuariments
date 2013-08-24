@@ -1,7 +1,5 @@
-<div class="row">
-	<div class="page-header">
-		<h2>Requirements <small><%= link_to "New Requirement", new_project_requirement_path(@project) %></small></h2>
-	</div>
+<div class="col-md-12">
+	<h2>Requirements <small><%= link_to "New Requirement", new_project_requirement_path(@project) %></small></h2>
 	<% if @requirements.empty? %>
 		<p class="text-center">
 			You don't have any requirement yet. <%= link_to "Create one", new_project_requirement_path(@project) %>

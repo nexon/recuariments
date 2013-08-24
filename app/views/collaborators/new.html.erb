@@ -1,9 +1,14 @@
-<%= simple_form_for :collaborator, url: {controller: :collaborators, action: :create}, html:{class:"form-inline"} do |f| %>
-	<%= render "form", f:f %>
-	<div class="row">
-		<div class="form-actions">
-			<%= f.button :submit, "Add Collaborator", class:"btn btn-primary" %>
-			<%= link_to "Cancel", :back, class:"btn" %>
+<div class="col-md-12">
+	<h2>Add a Collaborator</h2>
+	<%= simple_form_for :collaborator, url: {controller: :collaborators, action: :create}, html:{class:"form-inline"} do |f| %>
+		<%= render "form", f:f %>
+		<div class="form-group col-md-12">
+			<div class="col-md-6">
+				<%= f.button :submit, "Add Collaborator", class:"btn btn-primary col-md-12" %>
+			</div>
+			<div class="col-md-6">
+				<%= link_to "Cancel", :back, class:"btn btn-default col-md-12" %>
+			</div>
 		</div>
-	</div>
-<% end %>
+	<% end %>
+</div>

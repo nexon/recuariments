@@ -26,13 +26,6 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
   <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
@@ -40,83 +33,67 @@
   <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
   <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
   <!--[if (gt IE 9)|!(IE)]><!--> 
-  <body class=""> 
+  <body> 
   <!--<![endif]-->
     
-    <% if user_signed_in? %>
-    <div class="navbar">
-        <div class="navbar-inner">
-                <ul class="nav pull-right">
-                    <li id="fat-menu" class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-user"></i> <%= current_user.email %>
-                            <i class="icon-caret-down"></i>
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li class="divider"></li>
-                            <li class="divider visible-phone"></li>
-                            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-                        </ul>
-                    </li>
-                    
-                </ul>
-                <a class="brand" href="index.html">Recuariments.</a>
-        </div>
-    </div>
-		<% end %>
-
-		<div class="container-fluid">
-		  <div class="row-fluid">
-		    <div class="span2">
-					<div id="sidebar-nav">
-						<ul id="dashboard-menu" class="nav nav-list">
-							<li class="<%= is_active?("projects") %>">
-								<%= link_to project_path(@project) do %>
-									<i class="icon-home"></i> <span>Dashboard</span>
-								<% end %>
-							</li>
-							<li class="<%= is_active?("requirements")%>">
-								<%= link_to project_requirements_path(@project) do %>
-									<i class="icon-file"></i><span>Requirements</span>
-								<% end %>
-							</li>
-							<li class="<%= is_active?("fields") %>">
-								<%= link_to project_requirement_fields_path(@project) do %>
-									<i class="icon-tasks"></i> <span>Attributes</span>
-								<% end %>
-							</li>
-							<li class="<%= is_active?("collaborators") %>">
-								<%= link_to project_collaborators_path(@project) do %>
-									<i class="icon-user"></i> <span>Collaborators</span>
-								<% end %>
-							</li>
-							<!-- <li class=" "><a href="reports.html"><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
-							<li class=" "><a href="components.html"><i class="icon-briefcase"></i> <span>UI Features</span></a></li>
-							<li class=" "><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
-							<li class=" "><a href="media.html"><i class="icon-film"></i> <span>Media</span></a></li>
-							<li class=" "><a href="blog.html"><i class="icon-beaker"></i> <span>Blog</span></a></li>
-							<li class=" "><a href="help.html"><i class="icon-question-sign"></i> <span>Help</span></a></li>
-							<li class=" "><a href="faq.html"><i class="icon-book"></i> <span>Faq</span></a></li>
-							<li class=" "><a href="calendar.html"><i class="icon-calendar"></i> <span>Calendar</span></a></li>
-							<li class=" "><a href="tables.html"><i class="icon-table"></i> <span>Tables</span></a></li>
-							<li class=" theme-mobile-hack"><a href="mobile.html"><i class="icon-comment-alt"></i> <span>Mobile</span></a></li>
-							<li class=" "><a href="icons.html"><i class="icon-heart"></i> <span>Font Awesome</span></a></li> -->
-						</ul>
-    </div>
+			<div class="container">
+		    <% if user_signed_in? %>
+					<div class="row">
+						<nav class="navbar navbar-inverse" role="navigation">
+						  <!-- Brand and toggle get grouped for better mobile display -->
+						  <div class="navbar-header">
+						    <a class="navbar-brand" href="#">Recuariments</a>
+						  </div>
+						  <!-- Collect the nav links, forms, and other content for toggling -->
+						  <div class="collapse navbar-collapse navbar-ex1-collapse">
+						    <ul class="nav navbar-nav navbar-right">
+						      <li class="dropdown">
+						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="glyphicon glyphicon-user"></i> <%= current_user.email %> <b class="caret"></b></a>
+						        <ul class="dropdown-menu">
+											<li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+						        </ul>
+						      </li>
+						    </ul>
+						  </div><!-- /.navbar-collapse -->
+						</nav>
+					</div>
+				<% end %>
+			  <div class="row">
+					<div class="col-md-2 well">
+							<ul id="dashboard-menu" class="nav nav-list">
+								<li class="<%= is_active?("projects") %>">
+									<%= link_to project_path(@project) do %>
+										<i class="glyphicon glyphicon-home"></i> <span>Dashboard</span>
+									<% end %>
+								</li>
+								<li class="<%= is_active?("requirements")%>">
+									<%= link_to project_requirements_path(@project) do %>
+										<i class="glyphicon glyphicon-file"></i><span>Requirements</span>
+									<% end %>
+								</li>
+								<li class="<%= is_active?("fields") %>">
+									<%= link_to project_requirement_fields_path(@project) do %>
+										<i class="glyphicon glyphicon-tasks"></i> <span>Attributes</span>
+									<% end %>
+								</li>
+								<li class="<%= is_active?("collaborators") %>">
+									<%= link_to project_collaborators_path(@project) do %>
+										<i class="glyphicon glyphicon-user"></i> <span>Collaborators</span>
+									<% end %>
+								</li>
+							</ul>
+					</div>
+			    <div class="col-md-10">
+						<%= notice_message %>
+						<%= yield %>
+			    </div>
 		      
-		    </div>
-		    <div class="span10">
-					<%= notice_message %>
-					<%= yield %>
-		    </div>
-		  </div>
-		</div>      
-      <footer>
-          <hr>
-          <p class="pull-right">Design by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-          <p>&copy; 2013 <a href="#">Your Company</a></p>
-      </footer>
-
+			  </div> 
+	      <footer>
+	          <hr>
+	          <p class="pull-right">Design by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
+	          <p>&copy; 2013 <a href="#">Your Company</a></p>
+	      </footer>    
+		</div>
   </body>
 </html>
