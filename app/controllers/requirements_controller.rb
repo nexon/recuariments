@@ -21,7 +21,7 @@ class RequirementsController < ApplicationController
     @requirement.build_attributes_with_values(requirement_params)
     
     if @requirement.valid? && @requirement.save
-      redirect_to project_path(@project), notice: "Requirement Successfully added to the project."
+      redirect_to project_requirements_path(@project), notice: "Requirement Successfully added to the project."
     else
       @fields = @project.fields      
       render :new
@@ -39,7 +39,7 @@ class RequirementsController < ApplicationController
     @requirement = @project.requirements.find(params[:id])
     
     if @requirement.update_requirement_attributes(requirement_params)
-      redirect_to project_path(@project), notice: "Requirement Successfully updated."
+      redirect_to project_requirements_path(@project), notice: "Requirement Successfully updated."
     else
       @fields      = @project.fields
       render :edit
@@ -56,9 +56,9 @@ class RequirementsController < ApplicationController
     @requirement = @project.requirements.find(params[:id])
     
     if @requirement.destroy
-      redirect_to project_path(@project), notice: "Requirement Successfully removed."
+      redirect_to project_requirements_path(@project), notice: "Requirement Successfully removed."
     else
-      redirect_to project_path(@project), alert: "Something went wrong."
+      redirect_to project_requirements_path(@project), alert: "Something went wrong."
     end
   end
   
@@ -66,7 +66,7 @@ class RequirementsController < ApplicationController
     project = current_user.projects.find(params[:project_id])
     requirements = project.requirements
     if(requirements.empty?)
-      redirect_to project_path(project), alert: "You don't have any requirement to export."
+      redirect_to project_requirements_path(project), alert: "You don't have any requirement to export."
     else
       output = RequirementReport.new.to_pdf(requirements)
       send_data output, :filename => "#{project.title.parameterize.gsub('-','_')}_requirements_#{Time.now.to_i}", 

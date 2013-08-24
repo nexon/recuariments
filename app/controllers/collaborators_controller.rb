@@ -36,7 +36,7 @@ class CollaboratorsController < ApplicationController
         rescue ActiveRecord::RecordInvalid
           render :new
         else  
-          redirect_to project_path(@project), notice: "Collaborator Successfully added to project!."
+          redirect_to project_collaborators_path(@project), notice: "Collaborator Successfully added to project!."
         end
       end
     end

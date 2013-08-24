@@ -37,9 +37,11 @@ class RequirementField < ActiveRecord::Base
   end
   
   def ordering_record
-    # We obtain the last record order and  +1
-    lastest_new_record = self.project.fields.order("created_at").last
-    self.order  =  lastest_new_record.blank? ? 1 : lastest_new_record.order + 1
+    if self.new_record?
+      # We obtain the last record order and  +1
+      lastest_new_record = self.project.fields.order("created_at").last
+      self.order  =  lastest_new_record.blank? ? 1 : lastest_new_record.order + 1
+    end
   end
   
   def ensure_remove_association

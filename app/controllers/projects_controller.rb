@@ -68,22 +68,29 @@ class ProjectsController < ApplicationController
   end
   
   def update_order
-    project = current_user.projects.find(params[:id])
-    old_position   = project.fields.find_by_field_name(params[:field])
-    
-    old_position.update(order: params[:order])
-    
-    result = {}
-    
-    if old_position.save
-      result[:success] = true
-      result[:message] = "Order updated!."
+    begin
+      project = current_user.projects.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to project_requirement_fields_path, alert: "Project not found."
     else
-      result[:success] = false
-      result[:message] = "Order updated failed!."
-    end
-    respond_to do |format|
-      format.json { render json: result}
+      begin
+        field_to_move  = project.fields.find_by_field_name(params[:field])
+        old_position_field  = project.fields.find_by_order(params[:order])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to project_requirement_fields_path, alert: "Something went wrong."
+      else
+        old_position_field.order = field_to_move.order
+        field_to_move.order      = params[:order]
+        result = {}
+        if old_position_field.valid? && field_to_move.valid? && old_position_field.save && field_to_move.save
+          result = {success: true, message: "Order of attributes successfully updated!."}
+        else
+          result = {success: false, message: "Something went wrong."}
+        end
+        respond_to do |format|
+          format.json { render json: result}
+        end
+      end
     end
   end
   

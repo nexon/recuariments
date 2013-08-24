@@ -19,7 +19,7 @@ class FieldsController < ApplicationController
     @requirement_attribute   = @project.fields.build(fields_params)
     
     if @requirement_attribute.valid? && @requirement_attribute.save
-      redirect_to project_path(@project), notice: "Successfully added new field."
+      redirect_to project_requirement_attributes_path(@project), notice: "Successfully added new field."
     else
       render :new
     end
@@ -37,7 +37,7 @@ class FieldsController < ApplicationController
     @requirement_attribute.update(fields_params)
     
     if @requirement_attribute.valid? && @requirement_attribute.save
-      redirect_to project_path(@project), notice: "Successfully edited!."
+      redirect_to project_requirement_attributes_path(@project), notice: "Successfully edited!."
     else
       render :edit
     end
@@ -49,9 +49,9 @@ class FieldsController < ApplicationController
     @field = @project.fields.find(params[:id])
     
     if @field.destroy && RequirementFieldValues.destroy(RequirementFieldValues.where(requirement_field_id: @field.id).ids)
-      redirect_to project_path(@project), notice: "Successfully remove field."
+      redirect_to project_requirement_attributes_path(@project), notice: "Successfully remove field."
     else
-      redirect_to project_path(@project), alert: "Something went wrong."
+      redirect_to project_requirement_attributes_path(@project), alert: "Something went wrong."
     end
   end
   
