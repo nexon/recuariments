@@ -8,8 +8,8 @@
 	<tbody>
 		<% @collaborators.each do |member| %>
 		  <tr>
-		  	<td><%= member.user.email %> <%= raw('<span class="label label-success">Owner</span>') if member.owner %> </td>
-		  	<td><%= "options" if member.owner %></td>
+				<td><%= member.user.email %> <%= raw('<span class="label label-success">Owner</span>') if member.owner %> </td>
+		  	<td><%= link_to "Remove from Project", project_collaborator_path(@project, member.user), method: :delete, data: {confirm: "Are you sure?"}%></td>
 		  </tr>
 		<% end %>
 	</tbody>

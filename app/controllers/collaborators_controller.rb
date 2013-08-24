@@ -6,7 +6,7 @@ class CollaboratorsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to projects_path, alert: "Project not found."
     else
-      @collaborators = @project.memberships
+      @collaborators = @project.memberships.where.not(user_id: current_user.id)
     end 
   end
   
@@ -39,6 +39,27 @@ class CollaboratorsController < ApplicationController
           redirect_to project_collaborators_path(@project), notice: "Collaborator Successfully added to project!."
         end
       end
+    end
+  end
+  
+  def destroy
+    begin
+      @project = current_user.projects.find(params[:project_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to projects_path, alert: "Project not found."
+    else
+      begin
+        @user = @project.memberships.find_by_user_id(params[:id])
+      rescue ActiveRecord::RecordNotFound 
+        redirect_to projects_path, alert: "Something went wrong."
+      else
+        if @user.destroy
+          redirect_to project_collaborators_path(@project), notice: "Collaborator was successfully removed."
+        else
+          render :index
+        end
+      end
+      
     end
   end
   
