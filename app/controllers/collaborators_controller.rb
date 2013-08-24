@@ -36,6 +36,7 @@ class CollaboratorsController < ApplicationController
         rescue ActiveRecord::RecordInvalid
           render :new
         else  
+          CollaboratorMailer.project_invitation_email(@user.email, @project.title).deliver
           redirect_to project_collaborators_path(@project), notice: "Collaborator Successfully added to project!."
         end
       end

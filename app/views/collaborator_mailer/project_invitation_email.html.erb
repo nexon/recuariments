@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to recuariments, <%= @email %></h1>
+    <p>
+      Hi!, You have been invited to Project <strong><%= @project_name %></strong>. If you don't have account in our system, you can create one <%= link_to "Here", @signup %>. Or if you already have one <%= link_to "Sign in Here", @signin %><br/>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
+
