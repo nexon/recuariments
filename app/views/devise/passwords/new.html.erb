@@ -1,14 +1,25 @@
-<div class="block">
-	<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-	<%= f.error_notification %>
-  <div class="block-header">
-      <h2>Forgot your password?</h2>
-  </div>
-      <label>Email Address</label>
-			<%= f.input_field :email, :required => true, :autofocus => true, class:"span12" %>
-      <div class="form-actions">
-				<%= f.button :submit, "Send me reset password instructions", class:"btn btn-success pull-right" %>
-        <div class="clearfix"></div>
-      </div>
-		<% end %>
+<div class="row">
+	<h1>Requirements</h1>
+</div>
+<div class="row">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			Forgot your password?
+		</div>
+	  <div class="panel-body">
+			<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+				<%= f.error_notification %>
+ 
+				<div class="form-group">
+		      <label>Email Address</label>
+					<%= f.input_field :email, :required => true, :autofocus => true, class:"span12" %>
+				</div>
+		      <div class="form-group">
+						<%= f.button :submit, "Send me reset password instructions", class:"btn btn-success pull-right" %>
+		        <div class="clearfix"></div>
+		      </div>
+				<% end %>
+	  </div>
+	  <div class="panel-footer"><%= render "devise/shared/links" %></div>
+	</div>
 </div>
