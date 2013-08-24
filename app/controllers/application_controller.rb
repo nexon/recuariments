@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     if devise_controller?
       "default_layout"
     else
-      if (controller_name == "projects" && action_name != "index") || controller_list.include?(controller_name)
+      if (controller_name == "projects" && (action_name != "index" && action_name != "new")) || controller_list.include?(controller_name)
         "project_layout"
       else
         "application_layout"

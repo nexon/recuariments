@@ -26,11 +26,8 @@ class CollaboratorsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to projects_path, alert: "Project not found."
     else
-      begin
-        @user         = User.find_by_email(params[:collaborator][:email])
-      rescue ActiveRecord::RecordNotFound
-        render :new
-      else
+      @user  = User.find_by_email(params[:collaborator][:email])
+      unless @user.blank?
         begin
           @collaborator = @project.users << @user
         rescue ActiveRecord::RecordInvalid
@@ -39,6 +36,8 @@ class CollaboratorsController < ApplicationController
           CollaboratorMailer.project_invitation_email(@user.email, @project.title).deliver
           redirect_to project_collaborators_path(@project), notice: "Collaborator Successfully added to project!."
         end
+      else
+        redirect_to project_path(@project), alert: "User MUST exist in the system."
       end
     end
   end

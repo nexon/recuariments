@@ -26,13 +26,6 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
   <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
@@ -40,44 +33,41 @@
   <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
   <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
   <!--[if (gt IE 9)|!(IE)]><!--> 
-  <body class=""> 
+  <body> 
   <!--<![endif]-->
     
-    <% if user_signed_in? %>
-    <div class="navbar">
-        <div class="navbar-inner">
-                <ul class="nav pull-right">
-                    <li id="fat-menu" class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-user"></i> <%= current_user.email %>
-                            <i class="icon-caret-down"></i>
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li class="divider"></li>
-                            <li class="divider visible-phone"></li>
-                            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-                        </ul>
-                    </li>
-                    
-                </ul>
-                <a class="brand" href="index.html">Recuariments.</a>
-        </div>
-    </div>
-		<% end %>
-
-    
-    <div class="container">
-			<%= notice_message %>
-			<%= yield %>
+			<div class="container">
+		    <% if user_signed_in? %>
+					<div class="row">
+						<nav class="navbar navbar-inverse" role="navigation">
+						  <!-- Brand and toggle get grouped for better mobile display -->
+						  <div class="navbar-header">
+						    <a class="navbar-brand" href="#">Recuariments</a>
+						  </div>
+						  <!-- Collect the nav links, forms, and other content for toggling -->
+						  <div class="collapse navbar-collapse navbar-ex1-collapse">
+						    <ul class="nav navbar-nav navbar-right">
+						      <li class="dropdown">
+						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="glyphicon glyphicon-user"></i> <%= current_user.email %> <b class="caret"></b></a>
+						        <ul class="dropdown-menu">
+											<li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+						        </ul>
+						      </li>
+						    </ul>
+						  </div><!-- /.navbar-collapse -->
+						</nav>
+					</div>
+				<% end %>
+			  <div class="row">
+			    <div class="col-md-10">
+						<%= notice_message %>
+						<%= yield %>
+			    </div>
+		      <footer>
+		          <hr>
+		          <p>&copy; 2013 <a href="#">Alberto Lagos T.</a></p>
+		      </footer>
+			  </div>     
 		</div>
-
-                
-      <footer>
-          <hr>
-          <p class="pull-right">Design by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-          <p>&copy; 2013 <a href="#">Your Company</a></p>
-      </footer>
-
   </body>
 </html>
