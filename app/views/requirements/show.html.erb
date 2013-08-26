@@ -23,7 +23,7 @@
 			<li class="list-group-item">
 				<h5><%= attribute.name %></h5>
 					<% unless attribute.versions.blank? %>
-						<% changes = attribute.versions.group_by { |post| post.created_at.strftime("%B") } %>
+						<% changes = attribute.versions.group_by { |attr| attr.created_at.strftime("%B") } %>
 						<% changes.each do |key,version|  %>
 							<h6><%= key %></h6>
 							<% unless version.empty? %>
