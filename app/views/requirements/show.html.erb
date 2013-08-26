@@ -23,20 +23,24 @@
 			<li class="list-group-item">
 				<h5><%= attribute.name %></h5>
 					<% unless attribute.versions.blank? %>
-						<% attribute.versions.each do |version|  %>
-							<% unless version.changeset.empty? %>
-								<div class="row">
-									<div class="col-md-12">
-										<span class="label label-info">
-											<%= version.changeset[:updated_at].last %>
-										</span><span class="label label-default"><%= version.whodunnit %></span>
+						<% changes = attribute.versions.group_by { |post| post.created_at.strftime("%B") } %>
+						<% changes.each do |key,version|  %>
+							<h6><%= key %></h6>
+							<% unless version.empty? %>
+								<% version.each do |change| %>
+									<div class="row">
+										<div class="col-md-12">
+											<span class="label label-info">
+												<%= change.changeset[:updated_at].last.day %> at <%= change.changeset[:updated_at].last.strftime("%I:%M%p") %>
+											</span><span class="label label-default"><%= change.whodunnit %></span>
+										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">										
-										<%= raw Diff.differ(version.changeset[:value]) %>									
+									<div class="row">
+										<div class="col-md-12">										
+											<%= raw Diff.differ(change.changeset[:value]) %>									
+										</div>
 									</div>
-								</div>
+								<% end %>
 							<% end %>
 						<% end %>
 					<% else %>
