@@ -23,7 +23,7 @@
 			<li class="list-group-item">
 				<h5><%= attribute.name %></h5>
 					<% unless attribute.versions.blank? %>
-						<% changes = attribute.versions.group_by { |attr| attr.created_at.strftime("%B") } %>
+						<% changes = attribute.versions.group_by { |attr| attr.created_at.in_time_zone.strftime("%B") } %>
 						<% changes.each do |key,version|  %>
 							<h6><%= key %></h6>
 							<% unless version.empty? %>
@@ -31,7 +31,7 @@
 									<div class="row">
 										<div class="col-md-12">
 											<span class="label label-info">
-												<%= change.changeset[:updated_at].last.day %> at <%= change.changeset[:updated_at].last.strftime("%I:%M%p") %>
+												<%= change.changeset[:updated_at].last.day %> at <%= change.changeset[:updated_at].last.in_time_zone.strftime("%I:%M%p") %>
 											</span><span class="label label-default"><%= change.whodunnit %></span>
 										</div>
 									</div>
