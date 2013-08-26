@@ -1,3 +1,9 @@
-<!-- <div class="input-append date" id="datepicker_append" data-date-format="dd-mm-yyyy"> -->
-    <%= f.input_field field.field_name, as: :string%><span class="add-on"><i class="glyphicon glyphicon-th"></i></span>
-<!-- </div> -->
+<div class="form-group">
+	<label>
+		<%= field.name %>
+	</label>
+  <%= f.input_field field.field_name, as: :string, data:{:"date-format" => "dd/mm/yyyy"}, id: "datepicker-append-#{field.field_name}" %>
+</div>
+<script type="text/javascript" charset="utf-8">
+	$('[id*=datepicker-append-]').datepicker();
+</script>
