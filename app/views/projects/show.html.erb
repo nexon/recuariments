@@ -5,35 +5,4 @@
 			Welcome to the dashboard of your project. Here you can manage the recuariments, collaborators and more!.
 		</p>
 	</div>
-	<div class="row">
-		<h2>Messages</h2>
-		<p class="lead">Here you can post important messages about the project!.</p>
-	</div>
-	<div class="row">
-		<% if @messages.empty? %>
-			No messages.
-		<% else %>
-			<% @messages.each do |m| %>
-				<div class="row">
-					<div class="col-md-4">
-						(<%= m.created_at.strftime("%I:%M%p") %>)
-						<strong><%= m.post_by %>: </strong>
-					</div>
-					<div class="col-md-8">
-						<%= m.body %>
-					</div>
-				</div>
-			<% end %>
-		<% end %>
-	</div>
-	<div class="row">
-		<div class="jumbotron">
-			<div class="container">
-				<%= simple_form_for [@project,@message] do |f| %>
-					<%= render "messages/form", f:f %>
-					<%= f.button :submit, "Send Message", class:"btn btn-default" %>
-				<% end %>
-			</div>
-		</div>
-	</div>
 </div>
