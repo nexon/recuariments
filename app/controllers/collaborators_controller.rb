@@ -37,7 +37,10 @@ class CollaboratorsController < ApplicationController
           redirect_to project_collaborators_path(@project), notice: "Collaborator Successfully added to project!."
         end
       else
-        redirect_to project_path(@project), alert: "User MUST exist in the system."
+        # the user don't exist so we create one
+        @user = User.create_user(params[:collaborator][:email])
+        @collaborator = @project.users << @user
+        redirect_to project_collaborators_path(@project), notice: "Collaborator Successfully created and added to project!."
       end
     end
   end
