@@ -2,9 +2,9 @@ class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
   
-  has_many :memberships, inverse_of: :project
+  has_many :memberships, inverse_of: :project, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :messages
+  has_many :messages, dependent: :destroy
   
   # belongs_to :owner, class_name: "User"
 
