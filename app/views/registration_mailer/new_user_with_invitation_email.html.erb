@@ -6,12 +6,12 @@
   <body>
     <h1>Welcome to recuariments, <%= @email %></h1>
     <p>
-      Hi!, We create an account for you. This because you have been invited to Project. Your credentials:
+      Hi!, We create an account for you. This because you have been invited to participate in a project. Your credentials:
 			<ul>
 				<li><strong>Username:</strong> <%= @email %></li>
 				<li><strong>Password:</strong> <%= @password %></li>
 			</ul>
-			 Or if you already have one <%= link_to "Sign in Here", @signin %><br/>
+			 You can <%= link_to "Sign in Here", @signin %><br/>
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>
