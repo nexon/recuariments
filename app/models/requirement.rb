@@ -2,7 +2,6 @@ class Requirement < ActiveRecord::Base
   belongs_to :project
   
   has_many   :requirement_attributes, class_name:"RequirementFieldValues", dependent: :destroy
-  
   validates_presence_of :requirement_attributes
   validates_associated  :requirement_attributes
   
